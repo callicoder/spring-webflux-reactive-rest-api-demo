@@ -32,26 +32,25 @@ public class TweetController {
     }
 
     @GetMapping("/tweets/{id}")
-    public Mono<Tweet> getTweetById(@PathVariable(value = "id") String reminderId) {
-        return tweetRepository.findById(reminderId);
+    public Mono<Tweet> getTweetById(@PathVariable(value = "id") String tweetId) {
+        return tweetRepository.findById(tweetId);
     }
 
     @PutMapping("/tweets/{id}")
     public Mono<ResponseEntity<Tweet>> updateTweet(@PathVariable(value = "id") String tweetId,
                                                    @Valid @RequestBody Tweet tweet) {
-         return tweetRepository.findById(tweetId)
+        return tweetRepository.findById(tweetId)
                 .flatMap(existingTweet -> {
                     existingTweet.setText(tweet.getText());
-                    existingTweet.setCreatedAt(tweet.getCreatedAt());
-                    return tweetRepository.save(tweet);
+                    return tweetRepository.save(existingTweet);
                 })
                  .map(updatedTweet -> new ResponseEntity<>(updatedTweet, HttpStatus.OK))
                  .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @DeleteMapping("/tweets/{id}")
-    public Mono<ResponseEntity<Void>> deleteTweet(@PathVariable(value = "id") String reminderId) {
-        return tweetRepository.findById(reminderId)
+    public Mono<ResponseEntity<Void>> deleteTweet(@PathVariable(value = "id") String tweetId) {
+        return tweetRepository.findById(tweetId)
                 .flatMap(existingTweet -> tweetRepository.delete(existingTweet))
                 .then(Mono.just(new ResponseEntity<Void>(HttpStatus.OK)))
                 .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));

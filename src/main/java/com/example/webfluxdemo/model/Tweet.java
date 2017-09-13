@@ -12,7 +12,7 @@ import java.util.Date;
 /**
  * Created by rajeevkumarsingh on 08/09/17.
  */
-@Document
+@Document(collection = "tweets")
 public class Tweet {
     @Id
     private String id;
