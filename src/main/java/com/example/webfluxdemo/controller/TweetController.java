@@ -52,10 +52,10 @@ public class TweetController {
     public Mono<ResponseEntity<Void>> deleteTweet(@PathVariable(value = "id") String tweetId) {
 
         return tweetRepository.findById(tweetId)
-                .flatMap(existingTweet -> {
-                    return tweetRepository.delete(existingTweet)
-                            .then(Mono.just(new ResponseEntity<Void>(HttpStatus.OK)));
-                })
+                .flatMap(existingTweet ->
+                        tweetRepository.delete(existingTweet)
+                            .then(Mono.just(new ResponseEntity<Void>(HttpStatus.OK)))
+                )
                 .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
