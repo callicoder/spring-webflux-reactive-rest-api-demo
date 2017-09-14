@@ -82,30 +82,4 @@ public class WebfluxDemoApplicationTests {
                 .expectBody()
                 .jsonPath("$.text").isEqualTo("Updated Tweet");
     }
-
-    @Test
-    public void  testDeleteTweet() {
-        Tweet tweet = tweetRepository.save(new Tweet("To be deleted")).block();
-
-        webTestClient.delete()
-                .uri("/tweets/{id}", Collections.singletonMap("id", tweet.getId()))
-                .exchange()
-                .expectStatus().isOk();
-    }
-
-    //@Test
-    public void testStreamAllTweets() {
-        FluxExchangeResult<Tweet> result = webTestClient.get().uri("/stream/tweets")
-                .accept(MediaType.TEXT_EVENT_STREAM)
-                .exchange()
-                .expectStatus().isOk()
-                .expectHeader().contentType(MediaType.TEXT_EVENT_STREAM)
-                .returnResult(Tweet.class);
-
-        StepVerifier.create(result.getResponseBody())
-                .expectNextCount(3)
-                .verifyComplete();
-    }
-
-
 }

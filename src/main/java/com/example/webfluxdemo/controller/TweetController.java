@@ -44,15 +44,18 @@ public class TweetController {
                     existingTweet.setText(tweet.getText());
                     return tweetRepository.save(existingTweet);
                 })
-                 .map(updatedTweet -> new ResponseEntity<>(updatedTweet, HttpStatus.OK))
-                 .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                .map(updateTweet -> new ResponseEntity<>(updateTweet, HttpStatus.OK))
+                .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @DeleteMapping("/tweets/{id}")
     public Mono<ResponseEntity<Void>> deleteTweet(@PathVariable(value = "id") String tweetId) {
+
         return tweetRepository.findById(tweetId)
-                .flatMap(existingTweet -> tweetRepository.delete(existingTweet))
-                .then(Mono.just(new ResponseEntity<Void>(HttpStatus.OK)))
+                .flatMap(existingTweet -> {
+                    return tweetRepository.delete(existingTweet)
+                            .then(Mono.just(new ResponseEntity<Void>(HttpStatus.OK)));
+                })
                 .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
