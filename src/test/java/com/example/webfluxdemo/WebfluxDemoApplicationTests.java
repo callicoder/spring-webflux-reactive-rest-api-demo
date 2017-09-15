@@ -82,4 +82,14 @@ public class WebfluxDemoApplicationTests {
                 .expectBody()
                 .jsonPath("$.text").isEqualTo("Updated Tweet");
     }
+
+    @Test
+    public void testDeteteTweet() {
+	    Tweet tweet = tweetRepository.save(new Tweet("To be deleted")).block();
+
+	    webTestClient.delete()
+                .uri("/tweets/{id}", Collections.singletonMap("id",  tweet.getId()))
+                .exchange()
+                .expectStatus().isOk();
+    }
 }
