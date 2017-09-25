@@ -36,4 +36,4 @@ The server will start at <http://localhost:8080>.
 
 ## Running integration tests
 
-The project also contains integration tests for all the Rest APIs. You can run the integration tests by going to the root directory of the project typing `mvn test` in the terminal.
+The project also contains integration tests for all the Rest APIs. For running the integration tests, go to the root directory of the project and type `mvn test` in your terminal.
