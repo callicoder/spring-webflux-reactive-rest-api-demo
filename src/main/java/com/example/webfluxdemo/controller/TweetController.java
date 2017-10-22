@@ -1,8 +1,11 @@
 package com.example.webfluxdemo.controller;
 
+import com.example.webfluxdemo.exception.TweetNotFoundException;
 import com.example.webfluxdemo.model.Tweet;
+import com.example.webfluxdemo.payload.ErrorResponse;
 import com.example.webfluxdemo.repository.TweetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +36,8 @@ public class TweetController {
 
     @GetMapping("/tweets/{id}")
     public Mono<Tweet> getTweetById(@PathVariable(value = "id") String tweetId) {
-        return tweetRepository.findById(tweetId);
+        return tweetRepository.findById(tweetId)
+                .switchIfEmpty(Mono.error(new TweetNotFoundException("Tweet not found with id "+ tweetId)));
     }
 
     @PutMapping("/tweets/{id}")
@@ -63,6 +67,18 @@ public class TweetController {
     @GetMapping(value = "/stream/tweets", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<Tweet> streamAllTweets() {
         return tweetRepository.findAll();
+    }
+
+
+    // Exception Handling Examples
+    @ExceptionHandler
+    public ResponseEntity handleDuplicateKeyException(DuplicateKeyException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(new ErrorResponse("A Tweet with the same text already exists"));
+    }
+
+    @ExceptionHandler
+    public ResponseEntity handleNotFoundException(TweetNotFoundException ex) {
+        return ResponseEntity.notFound().build();
     }
 
 }
