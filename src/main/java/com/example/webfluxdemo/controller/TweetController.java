@@ -37,7 +37,7 @@ public class TweetController {
     @GetMapping("/tweets/{id}")
     public Mono<Tweet> getTweetById(@PathVariable(value = "id") String tweetId) {
         return tweetRepository.findById(tweetId)
-                .switchIfEmpty(Mono.error(new TweetNotFoundException("Tweet not found with id "+ tweetId)));
+                .switchIfEmpty(Mono.error(new TweetNotFoundException(tweetId)));
     }
 
     @PutMapping("/tweets/{id}")
