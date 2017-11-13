@@ -82,7 +82,7 @@ public class WebfluxDemoApplicationTests {
     }
 
     @Test
-    public void testDeteteTweet() {
+    public void testDeleteTweet() {
 	    Tweet tweet = tweetRepository.save(new Tweet("To be deleted")).block();
 
 	    webTestClient.delete()
