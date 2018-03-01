@@ -15,7 +15,7 @@ Read the tutorial : https://www.callicoder.com/reactive-rest-apis-spring-webflux
 **1. Clone the application**
 
 ```bash
-git clone git@github.com:callicoder/spring-webflux-reactive-rest-api-demo.git
+git clone https://github.com/callicoder/spring-webflux-reactive-rest-api-demo.git
 ```
 
 **2. Build and run the app using maven**
