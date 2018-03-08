@@ -35,9 +35,10 @@ public class TweetController {
     }
 
     @GetMapping("/tweets/{id}")
-    public Mono<Tweet> getTweetById(@PathVariable(value = "id") String tweetId) {
+    public Mono<ResponseEntity<Tweet>> getTweetById(@PathVariable(value = "id") String tweetId) {
         return tweetRepository.findById(tweetId)
-                .switchIfEmpty(Mono.error(new TweetNotFoundException(tweetId)));
+                .map(savedTweet -> ResponseEntity.ok(savedTweet))
+                .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/tweets/{id}")
@@ -70,14 +71,19 @@ public class TweetController {
     }
 
 
-    // Exception Handling Examples
-    @ExceptionHandler
+
+
+    /*
+        Exception Handling Examples (These can be put into a @ControllerAdvice to handle exceptions globally)
+    */
+
+    @ExceptionHandler(DuplicateKeyException.class)
     public ResponseEntity handleDuplicateKeyException(DuplicateKeyException ex) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(new ErrorResponse("A Tweet with the same text already exists"));
     }
 
-    @ExceptionHandler
-    public ResponseEntity handleNotFoundException(TweetNotFoundException ex) {
+    @ExceptionHandler(TweetNotFoundException.class)
+    public ResponseEntity handleTweetNotFoundException(TweetNotFoundException ex) {
         return ResponseEntity.notFound().build();
     }
 
