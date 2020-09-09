@@ -1,4 +1,4 @@
-package com.example.webfluxdemo.sit.tests;
+package com.example.webfluxdemo.integration.tests;
 
 import com.example.webfluxdemo.model.Tweet;
 import com.example.webfluxdemo.tags.SystemIntegrationTest;

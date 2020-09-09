@@ -1,4 +1,4 @@
-package com.example.webfluxdemo.sit.configuration;
+package com.example.webfluxdemo.integration.configuration;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @Getter
 @Setter
 @Configuration
-@ComponentScan(basePackages = {"com.example.webfluxdemo.sit.client"})
+@ComponentScan(basePackages = { "com.example.webfluxdemo.integration.client" })
 @TestComponent
 public class TestConfig {
     @Value("${client.web-flux-demo-app.base-url:#{null}}")

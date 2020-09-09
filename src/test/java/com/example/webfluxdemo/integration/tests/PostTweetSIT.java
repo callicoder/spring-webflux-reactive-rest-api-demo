@@ -1,6 +1,6 @@
-package com.example.webfluxdemo.sit.tests;
+package com.example.webfluxdemo.integration.tests;
 
-import com.example.webfluxdemo.dto.RequestDTO;
+import com.example.webfluxdemo.domain.dto.RequestDTO;
 import com.example.webfluxdemo.model.Tweet;
 import com.example.webfluxdemo.tags.SystemIntegrationTest;
 import io.qameta.allure.Feature;

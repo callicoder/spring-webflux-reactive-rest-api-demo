@@ -1,0 +1,32 @@
+description: should post tweets successfully
+name: post-tweet-happy-consumer-contract
+priority: 1
+ignored: false
+request:
+  url: /tweets
+  method: POST
+  headers:
+    Content-Type: application/json
+  body:
+    text: "hello world"
+  matchers:
+    body:
+      - path: $.text
+        type: by_regex
+        predefined: non_blank
+response:
+  status: 200
+  headers:
+    Content-Type: application/json
+  body:
+    id: 5f58f286a7b9ed1ac69aba51
+    text: "{{{ jsonpath this '$.text' }}}"
+    createdAt: "2020-09-09T15:19:34.592+0000"
+  matchers:
+    body:
+      - path: $.id
+        type: by_regex
+        predefined: non_blank
+      - path: $.createdAt
+        type: by_regex
+        predefined: non_blank

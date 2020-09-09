@@ -1,7 +1,7 @@
-package com.example.webfluxdemo.sit.client;
+package com.example.webfluxdemo.integration.client;
 
-import com.example.webfluxdemo.dto.RequestDTO;
-import com.example.webfluxdemo.sit.configuration.TestConfig;
+import com.example.webfluxdemo.domain.dto.RequestDTO;
+import com.example.webfluxdemo.integration.configuration.TestConfig;
 import com.example.webfluxdemo.utils.JsonUtils;
 import io.netty.handler.codec.http.HttpHeaderValues;
 import lombok.RequiredArgsConstructor;

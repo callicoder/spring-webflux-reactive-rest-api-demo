@@ -1,4 +1,4 @@
-package com.example.webfluxdemo.sit.configuration;
+package com.example.webfluxdemo.integration.configuration;
 
 import com.example.webfluxdemo.domain.ObjectMapperConfiguration;
 import com.fasterxml.jackson.annotation.JsonInclude;

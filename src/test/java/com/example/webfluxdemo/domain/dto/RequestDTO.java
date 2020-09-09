@@ -1,4 +1,4 @@
-package com.example.webfluxdemo.dto;
+package com.example.webfluxdemo.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;

@@ -1,4 +1,4 @@
-package com.example.webfluxdemo.ct.tests;
+package com.example.webfluxdemo.component.tests;
 
 import com.example.webfluxdemo.model.Tweet;
 import com.example.webfluxdemo.tags.ComponentTest;

@@ -1,7 +1,7 @@
 package com.example.webfluxdemo.tags;
 
-import com.example.webfluxdemo.sit.configuration.TestConfig;
-import com.example.webfluxdemo.sit.configuration.CustomWebTestClientConfigurer;
+import com.example.webfluxdemo.integration.configuration.TestConfig;
+import com.example.webfluxdemo.integration.configuration.CustomWebTestClientConfigurer;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

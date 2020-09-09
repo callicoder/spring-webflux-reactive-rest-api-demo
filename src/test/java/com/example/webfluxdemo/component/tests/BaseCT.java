@@ -1,4 +1,4 @@
-package com.example.webfluxdemo.ct.tests;
+package com.example.webfluxdemo.component.tests;
 
 import com.example.webfluxdemo.repository.TweetRepository;
 import lombok.Getter;

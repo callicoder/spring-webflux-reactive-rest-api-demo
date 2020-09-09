@@ -1,6 +1,6 @@
-package com.example.webfluxdemo.sit.tests;
+package com.example.webfluxdemo.integration.tests;
 
-import com.example.webfluxdemo.sit.client.DemoAppClient;
+import com.example.webfluxdemo.integration.client.DemoAppClient;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

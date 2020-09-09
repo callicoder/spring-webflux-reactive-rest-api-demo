@@ -1,4 +1,4 @@
-package com.example.webfluxdemo.ct.configuration;
+package com.example.webfluxdemo.component.configuration;
 
 import java.util.List;
 import org.springframework.boot.test.context.TestConfiguration;
