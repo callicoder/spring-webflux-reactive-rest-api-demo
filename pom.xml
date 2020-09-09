@@ -128,6 +128,7 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-contract-maven-plugin</artifactId>
                 <extensions>true</extensions>
+                <version>2.2.4.RELEASE</version>
                 <configuration>
                     <skip>true</skip>
                     <packageWithBaseClasses>com.example.webfluxdemo.contract</packageWithBaseClasses>
@@ -144,14 +145,6 @@
                 <groupId>io.gatling</groupId>
                 <artifactId>gatling-maven-plugin</artifactId>
                 <version>3.0.5</version>
-                <configuration>
-                    <compilerJvmArgs>
-                        <compilerJvmArg>-Djava.io.tmpdir=${HOME}/tmp/</compilerJvmArg>
-                    </compilerJvmArgs>
-                    <jvmArgs>
-                        <jvmArg>-Djava.io.tmpdir=${HOME}/tmp/</jvmArg>
-                    </jvmArgs>
-                </configuration>
             </plugin>
         </plugins>
     </build>
