@@ -1,0 +1,5 @@
+connection:
+  timeout: 60000
+client:
+  web-flux-demo-app:
+    base-url: "http://localhost:8080"

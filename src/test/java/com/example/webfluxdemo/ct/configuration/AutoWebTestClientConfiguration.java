@@ -9,7 +9,7 @@ import org.springframework.test.web.reactive.server.MockServerConfigurer;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 @TestConfiguration
-public class WebTestClientConfiguration {
+public class AutoWebTestClientConfiguration {
     @Bean
     public WebTestClient webTestClient(final ApplicationContext applicationContext,
         final List<WebTestClientBuilderCustomizer> customizers, final List<MockServerConfigurer> configurers) {

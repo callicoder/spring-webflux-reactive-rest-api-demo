@@ -1,4 +1,4 @@
-package domain;
+package com.example.webfluxdemo.domain;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;

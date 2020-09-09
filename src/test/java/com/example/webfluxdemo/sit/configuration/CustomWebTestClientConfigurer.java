@@ -39,7 +39,7 @@ import reactor.netty.tcp.TcpClient;
 @Slf4j
 @Configuration
 @RequiredArgsConstructor
-public class WebTestClientConfigurer {
+public class CustomWebTestClientConfigurer {
 
     private static final Integer maxInMemorySizeInMb = 10;
     private static final Long    responseTimeout     = 1L;
@@ -120,8 +120,8 @@ public class WebTestClientConfigurer {
     }
 
     @Bean
-    @Qualifier("webTestClient")
-    public WebTestClient webTestClient() throws SSLException {
+    @Qualifier("sitWebTestClient")
+    public WebTestClient sitWebTestClient() throws SSLException {
         return WebTestClient
             .bindToServer(connector())
             .exchangeStrategies(getExchangeStrategies())

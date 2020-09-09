@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono;
 
 @ComponentTest
 @Feature("Component Tests - Get Tweet")
-public class GetTweetCT extends BaseCT {
+public class TweetCT extends BaseCT {
 
     private static final String                     TWEET_MESSAGE = "This is a Test Tweet";
     private              WebTestClient.ResponseSpec response;
@@ -60,6 +60,7 @@ public class GetTweetCT extends BaseCT {
     }
 
     @Test
+    @DisplayName("get single tweet")
     public void testGetSingleTweet() {
         Tweet tweet = tweetRepository
             .save(new Tweet("Hello, World!"))
@@ -78,5 +79,48 @@ public class GetTweetCT extends BaseCT {
                 Assertions
                     .assertThat(response.getResponseBody())
                     .isNotNull());
+    }
+
+    @Test
+    @DisplayName("update tweet")
+    public void testUpdateTweet() {
+        Tweet tweet = tweetRepository
+            .save(new Tweet("Initial Tweet"))
+            .block();
+
+        Tweet newTweetData = new Tweet("Updated Tweet");
+
+        response = getWebTestClient()
+            .put()
+            .uri("/tweets/{id}", Collections.singletonMap("id", tweet.getId()))
+            .contentType(MediaType.APPLICATION_JSON)
+            .accept(MediaType.APPLICATION_JSON)
+            .body(Mono.just(newTweetData), Tweet.class)
+            .exchange();
+
+        response
+            .expectStatus()
+            .isOk()
+            .expectHeader()
+            .contentType(MediaType.APPLICATION_JSON)
+            .expectBody()
+            .jsonPath("$.text")
+            .isEqualTo("Updated Tweet");
+    }
+
+    @Test
+    public void testDeleteTweet() {
+        Tweet tweet = tweetRepository
+            .save(new Tweet("To be deleted"))
+            .block();
+
+        response = getWebTestClient()
+            .delete()
+            .uri("/tweets/{id}", Collections.singletonMap("id", tweet.getId()))
+            .exchange();
+
+        response
+            .expectStatus()
+            .isOk();
     }
 }

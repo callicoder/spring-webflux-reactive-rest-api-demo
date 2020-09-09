@@ -1,8 +1,8 @@
 package com.example.webfluxdemo.utils;
 
+import com.example.webfluxdemo.domain.ObjectMapperConfiguration;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import domain.ObjectMapperConfiguration;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,6 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.function.Supplier;
 import org.apache.commons.io.FileUtils;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
@@ -25,7 +26,7 @@ public interface JsonUtils {
         try {
             return new JSONObject(new JSONTokener(FileUtils.readFileToString(file, StandardCharsets.UTF_8)));
         }
-        catch (IOException e) {
+        catch (IOException | JSONException e) {
             throw new IllegalStateException(String.format(FILE_EXCEPTION, file, e));
         }
     }

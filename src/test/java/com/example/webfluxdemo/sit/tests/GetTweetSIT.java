@@ -4,17 +4,16 @@ import com.example.webfluxdemo.model.Tweet;
 import com.example.webfluxdemo.tags.SystemIntegrationTest;
 import io.qameta.allure.Feature;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 @SystemIntegrationTest
-@Feature("Web Flux Demo App - Deployed Environment Test")
-@RequiredArgsConstructor
-public class WebFluxDemoAppGetSIT extends BaseSIT {
+@Feature("Get Tweet - Deployed Environment Test")
+public class GetTweetSIT extends BaseSIT {
 
     private WebTestClient.ResponseSpec response;
     List<Tweet> responseBody;
@@ -26,6 +25,7 @@ public class WebFluxDemoAppGetSIT extends BaseSIT {
     }
 
     @Test
+    @Order(1)
     @DisplayName("should get success with GET /tweets call")
     public void shouldGetStatusOk() {
         response
@@ -34,6 +34,7 @@ public class WebFluxDemoAppGetSIT extends BaseSIT {
     }
 
     @Test
+    @Order(2)
     @DisplayName("tweets count should be > 0")
     void tweetCountShouldBeGreaterThanZero() {
         responseBody = response
