@@ -59,17 +59,17 @@ The application defines following REST APIs
 mvn -Dtest=com.example.webfluxdemo.component.** test
 ```
 
-####Running Integration tests from deployed environment
+#### Running Integration tests from deployed environment
 ```$xslt
 mvn -Dtest=com.example.webfluxdemo.integration.** test
 ```
 
-####Generating & Running Contract Tests
+#### Generating & Running Contract Tests
 ```$xslt
 mvn org.springframework.cloud:spring-cloud-contract-maven-plugin:generateTests
 mvn -Dtest=ContractVerifierTest test
 ```
-####Creating & Running Consumer stubs from Contract
+#### Creating & Running Consumer stubs from Contract
 ```$xslt
 mvn org.springframework.cloud:spring-cloud-contract-maven-plugin:convert
 mvn org.springframework.cloud:spring-cloud-contract-maven-plugin:run
@@ -81,7 +81,7 @@ Default port for wiremock stub is 8080 to override -
 
 Learn more about Spring Cloud Contract - https://spring.io/projects/spring-cloud-contract 
 
-####Performance Tests
+#### Performance Tests
 Gatling test scripts to run load tests. To execute
 ```
 mvn gatling:test -Dgatling.simulationClass=com.example.webfluxdemo.performance.Journey
