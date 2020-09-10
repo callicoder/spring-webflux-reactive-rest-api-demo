@@ -1,22 +1,14 @@
-description: should get tweets successfully
+description: should get not found
 name: get-tweet-happy-consumer-contract
 priority: 1
 ignored: false
 request:
-  url: /tweets
+  url: /tweets/12345asdafweer
   method: GET
   headers:
     Content-Type: application/json
-response:
-  status: 200
-  headers:
-    Content-Type: application/json
-  body:
-    - id: 5f58f286a7b9ed1ac69aba51
-      text: "This is a Tweet"
-      createdAt: "2020-09-09T15:19:34.592+0000"
   matchers:
-    body:
-      - path: $
-        type: by_type
-        minOccurrence: 0
+    url:
+      regex: ^\/tweets\/[a-zA-Z0-9]+$
+response:
+  status: 404
