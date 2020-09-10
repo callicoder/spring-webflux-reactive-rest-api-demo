@@ -1,6 +1,8 @@
-# Build Reactive Rest APIs with Spring WebFlux and Reactive MongoDB
+# Testing Reactive Rest APIs with Spring WebFlux and Reactive MongoDB
 
-Read the tutorial : https://www.callicoder.com/reactive-rest-apis-spring-webflux-reactive-mongo/
+This repo is forked from https://github.com/callicoder/spring-webflux-reactive-rest-api-demo
+This repo demonstrates different types of testing for microservices like Component, System Integration,
+Contract & Performance tests. 
 
 ## Requirements
 
@@ -15,7 +17,7 @@ Read the tutorial : https://www.callicoder.com/reactive-rest-apis-spring-webflux
 **1. Clone the application**
 
 ```bash
-git clone https://github.com/callicoder/spring-webflux-reactive-rest-api-demo.git
+git clone https://github.com/Dev2AtWork/spring-webflux-reactive-rest-api-demo.git
 ```
 
 **2. Build and run the app using maven**
@@ -52,6 +54,34 @@ The application defines following REST APIs
 4. GET /stream/tweets - Stream tweets to a browser as Server-Sent Events
 ```
 
-## Running integration tests
+#### Running Component Tests (Pre-deployment tests)
+```$xslt
+mvn -Dtest=com.example.webfluxdemo.component.** test
+```
 
-The project also contains integration tests for all the Rest APIs. For running the integration tests, go to the root directory of the project and type `mvn test` in your terminal.
+####Running Integration tests from deployed environment
+```$xslt
+mvn -Dtest=com.example.webfluxdemo.integration.** test
+```
+
+####Generating & Running Contract Tests
+```$xslt
+mvn org.springframework.cloud:spring-cloud-contract-maven-plugin:generateTests
+mvn -Dtest=ContractVerifierTest test
+```
+####Creating & Running Consumer stubs from Contract
+```$xslt
+mvn org.springframework.cloud:spring-cloud-contract-maven-plugin:convert
+mvn org.springframework.cloud:spring-cloud-contract-maven-plugin:run
+```
+Default port for wiremock stub is 8080 to override - 
+```$xslt
+-Dspring.cloud.contract.verifier.http.port=<port_number>
+```
+
+Learn more about Spring Cloud Contract - https://spring.io/projects/spring-cloud-contract 
+####Performance Tests
+Gatling test scripts to run load tests. To execute
+```
+mvn clean gatling:test -Dgatling.simulationClass=com.example.webfluxdemo.performance.Journey
+```
