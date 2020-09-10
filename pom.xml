@@ -153,7 +153,7 @@
                 <extensions>true</extensions>
                 <version>2.2.4.RELEASE</version>
                 <configuration>
-                    <skip>true</skip>
+                    <skip>false</skip>
                     <packageWithBaseClasses>com.example.webfluxdemo.contract</packageWithBaseClasses>
                     <testMode>WEBTESTCLIENT</testMode>
                     <testFramework>JUNIT5</testFramework>
