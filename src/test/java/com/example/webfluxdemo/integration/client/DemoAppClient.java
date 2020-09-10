@@ -45,4 +45,31 @@ public class DemoAppClient {
             .baseUrl(testConfig.getWebFluxDemoAppUrl())
             .build();
     }
+
+    public WebTestClient.ResponseSpec getTweetById(final String tweetId) {
+        return getWebTestClientByBaseUrl()
+            .get()
+            .uri(String.format("tweets/%s", tweetId))
+            .exchange();
+    }
+
+    public WebTestClient.ResponseSpec updateTweet(final String tweetId, final RequestDTO tweet) {
+        MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
+        headers.add(HttpHeaders.CONTENT_TYPE, HttpHeaderValues.APPLICATION_JSON.toString());
+
+        return
+            getWebTestClientByBaseUrl()
+                .put()
+                .uri(String.format("tweets/%s", tweetId))
+                .headers(httpHeaders -> httpHeaders.addAll(headers))
+                .body(BodyInserters.fromValue(JsonUtils.getJsonStringFromPojo(tweet)))
+                .exchange();
+    }
+
+    public WebTestClient.ResponseSpec deleteTweet(String tweetId) {
+        return getWebTestClientByBaseUrl()
+            .delete()
+            .uri(String.format("tweets/%s", tweetId))
+            .exchange();
+    }
 }

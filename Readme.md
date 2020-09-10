@@ -83,5 +83,5 @@ Learn more about Spring Cloud Contract - https://spring.io/projects/spring-cloud
 ####Performance Tests
 Gatling test scripts to run load tests. To execute
 ```
-mvn clean gatling:test -Dgatling.simulationClass=com.example.webfluxdemo.performance.Journey
+mvn gatling:test -Dgatling.simulationClass=com.example.webfluxdemo.performance.Journey
 ```

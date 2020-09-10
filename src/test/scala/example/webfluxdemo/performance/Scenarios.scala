@@ -14,7 +14,7 @@ trait Scenarios {
         .get(baseUrl + "/tweets")
         .headers(getHeaders)
         .check(status.is(200))
-        .check(responseTimeInMillis.lte(expected = 1000))
+        .check(responseTimeInMillis.lte(expected = 100))
     )
 
 }

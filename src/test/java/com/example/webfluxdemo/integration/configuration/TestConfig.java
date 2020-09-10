@@ -10,7 +10,10 @@ import org.springframework.context.annotation.Configuration;
 @Getter
 @Setter
 @Configuration
-@ComponentScan(basePackages = { "com.example.webfluxdemo.integration.client" })
+@ComponentScan(basePackages = {
+    "com.example.webfluxdemo.integration.client",
+    "com.example.webfluxdemo.integration.steps"
+})
 @TestComponent
 public class TestConfig {
     @Value("${client.web-flux-demo-app.base-url:#{null}}")
